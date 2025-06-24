@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run scss:compile && next build",
     "start": "next start",
     "lint": "next lint",
-    "scss": "gulp scss:watch"
+    "scss": "gulp scss:watch",
+    "scss:compile": "gulp scss"
   },
   "dependencies": {
     "next": "15.3.4",
