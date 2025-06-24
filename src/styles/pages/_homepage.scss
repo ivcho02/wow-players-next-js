@@ -1,4 +1,5 @@
-// Homepage styles for the WoW app
+@use "../base/variables" as *;
+
 .wow {
   &__search {
     &__container {
@@ -25,7 +26,7 @@
       font-size: 2.5rem;
       font-weight: bold;
       margin-bottom: 30px;
-      color: #ffd700;
+      color: $gold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
       font-family: var(--font-im-fell-english), 'Times New Roman', serif;
       line-height: 1.2;
@@ -42,7 +43,7 @@
       width: 100%;
       max-width: 300px;
       padding: 15px 20px;
-      border: 2px solid #ffd700;
+      border: 2px solid $gold;
       border-radius: 25px;
       background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
@@ -56,7 +57,7 @@
       }
 
       &:focus {
-        border-color: #ffed4e;
+        border-color: $gorse;
         box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         background: rgba(255, 255, 255, 0.15);
       }
@@ -64,10 +65,10 @@
 
     &__button {
       padding: 15px 30px;
-      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      background: linear-gradient(135deg, $gold, $gorse);
       border: none;
       border-radius: 25px;
-      color: #000000;
+      color: $black;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
@@ -78,7 +79,7 @@
       font-family: var(--font-im-fell-english), 'Times New Roman', serif;
 
       &:hover {
-        background: linear-gradient(135deg, #ffed4e, #ffd700);
+        background: linear-gradient(135deg, $gorse, $gold);
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
       }
