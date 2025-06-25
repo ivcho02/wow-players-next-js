@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Particles, { initParticlesEngine} from "@tsparticles/react";
 import { Container, IOptions, RecursivePartial } from "@tsparticles/engine";
-import particles from "@/components/particles.json";
+import particles from "@/app/components/particles.json";
 import { tsParticles } from "@tsparticles/engine";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 
@@ -33,4 +33,4 @@ function FireParticles() {
 	);
 }
 
-export default React.memo(FireParticles);
+export default React.memo(FireParticles); 

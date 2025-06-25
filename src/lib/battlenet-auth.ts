@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
 import { BattleNetToken } from '@/types/battlenet';
 
-class BattleNetAuth {
+export class BattleNetAuth {
   private static instance: BattleNetAuth;
   private token: BattleNetToken | null = null;
   private readonly clientId = 'a3bf34fb01ad4b4683b8a767a64ee286';
@@ -58,17 +57,4 @@ class BattleNetAuth {
   }
 }
 
-const battleNetAuth = BattleNetAuth.getInstance();
-
-export async function GET(request: NextRequest) {
-  try {
-    const token = await battleNetAuth.getValidToken();
-    
-    return NextResponse.json({ success: true, token });
-  } catch (error) {
-    return NextResponse.json(
-      { success: false, error: 'Failed to get access token' },
-      { status: 500 }
-    );
-  }
-} 
+export const battleNetAuth = BattleNetAuth.getInstance(); 
