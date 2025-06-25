@@ -22,8 +22,25 @@ function scss() {
     .pipe(gulp.dest(cssDest));
 }
 
+// Process Tailwind CSS
+function tailwind() {
+  ensureAssetsDir();
+  return gulp
+    .src('src/app/assets/main.css')
+    .pipe(require('gulp-postcss')([
+      require('tailwindcss'),
+      require('autoprefixer')
+    ]))
+    .pipe(gulp.dest(cssDest));
+}
+
+// Combined task for SCSS and Tailwind
+const styles = gulp.series(scss, tailwind);
+
 gulp.task('scss', scss);
+gulp.task('tailwind', tailwind);
+gulp.task('styles', styles);
 
 gulp.task('scss:watch', function () {
-  gulp.watch('src/styles/**/*.scss', gulp.series('scss'));
+  gulp.watch('src/styles/**/*.scss', gulp.series('styles'));
 }); 

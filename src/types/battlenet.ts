@@ -36,6 +36,13 @@ export interface CharacterProfile {
     name: string;
     id: number;
   };
+  race: {
+    key: {
+      href: string;
+    };
+    name: string;
+    id: number;
+  };
   realm: {
     key: {
       href: string;

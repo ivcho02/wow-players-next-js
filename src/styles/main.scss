@@ -1,3 +1,8 @@
 @use "./base/variables" as *;
 @use "./components/general" as *;
+@use "./components/character-display" as *;
 @use "./pages/homepage" as *;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -2,15 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { CharacterProfile } from '@/types/battlenet';
 import { battleNetAuth } from '@/lib/battlenet-auth';
 
+const CHARACTER_URL = "https://eu.api.blizzard.com/profile/wow/character/";
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ realm: string; name: string }> }
+  { params }: { params: Promise<{ realm: string; name: string; locale: string }> }
 ) {
   try {
-    const { realm, name } = await params;
+    const { realm, name, locale } = await params;
     const token = await battleNetAuth.getValidToken();
     
-    const characterUrl = `https://eu.api.blizzard.com/profile/wow/character/${realm}/${name}?namespace=profile-eu&locale=en_US`;
+    const characterUrl = `${CHARACTER_URL}${realm}/${name}?namespace=profile-eu&locale=${locale}`;
     
     const response = await fetch(characterUrl, {
       headers: {

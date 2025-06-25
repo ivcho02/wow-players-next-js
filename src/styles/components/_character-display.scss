@@ -1,0 +1,67 @@
+@use "../base/variables" as *;
+
+.wow {
+    &__results {
+        &__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        &__content {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            border-radius: 50%;
+            backdrop-filter: blur(22px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 15px rgba(255, 215, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $gold;
+            text-shadow: 1px 1px 3px $gold;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+        }
+
+        &-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: $white;
+            text-shadow: 1px 1px 6px $white;
+            font-family: var(--font-im-fell-english), 'Times New Roman', serif;
+            line-height: 1.2;
+        }
+    }
+
+    // Responsive design
+    @media (max-width: 768px) {
+        .wow {
+            &__results {
+                &__content {
+                    padding: 30px 20px;
+                    margin: 20px;
+                }
+
+                &__title {
+                    font-size: 2rem;
+                }
+
+                &__field {
+                    max-width: 250px;
+                }
+            }
+        }
+    }
+}

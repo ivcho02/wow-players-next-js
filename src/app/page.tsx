@@ -18,17 +18,15 @@ export default function Home() {
   return (
     <>
       <FireParticles />
-      
+
       <div className="wow__search__container">
         <div className="wow__search__content">
           <h1 className="wow__search__title">World of Warcraft Players</h1>
           <SearchForm onSearch={handleSearchResult} />
-          <CharacterDisplay 
-            characterData={characterData} 
-            error={error} 
-          />
         </div>
       </div>
+
+      <CharacterDisplay characterData={characterData} error={error} />
     </>
   );
 }
