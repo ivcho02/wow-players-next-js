@@ -1,13 +1,13 @@
 'use client'
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Particles, { initParticlesEngine} from "@tsparticles/react";
 import { Container, IOptions, RecursivePartial } from "@tsparticles/engine";
 import particles from "@/components/particles.json";
 import { tsParticles } from "@tsparticles/engine";
 import { loadFirePreset } from "@tsparticles/preset-fire";
 
-export default function FireParticles() {
+function FireParticles() {
 	const [init, setInit] = useState(false);
 
 	useEffect(() => {
@@ -18,9 +18,7 @@ export default function FireParticles() {
 		});
 	}, []);
 
-	const particlesLoaded = (container: Container | undefined) => {
-		console.log(container);
-	};
+	const particlesLoaded = useCallback((container: Container | undefined) => {}, []);
 
 	return (
 		<div>
@@ -34,3 +32,5 @@ export default function FireParticles() {
 		</div>
 	);
 }
+
+export default React.memo(FireParticles);
