@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Particles, { initParticlesEngine} from "@tsparticles/react";
 import { Container, IOptions, RecursivePartial } from "@tsparticles/engine";
 import particles from "@/app/components/particles.json";
@@ -18,7 +18,7 @@ function FireParticles() {
 		});
 	}, []);
 
-	const particlesLoaded = useCallback((container: Container | undefined) => {}, []);
+	const particlesLoaded = useCallback(() => {}, []);
 
 	return (
 		<div>

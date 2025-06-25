@@ -30,7 +30,7 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
       } else {
         onSearch(null, data.error || 'Failed to fetch character data');
       }
-    } catch (error) {
+    } catch {
       onSearch(null, 'Failed to fetch character data');
     } finally {
       setIsLoading(false);
