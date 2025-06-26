@@ -12,15 +12,17 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const scrollToResults = () => {
-    const resultsElement = document.querySelector('.wow__results__container');
+    setTimeout(() => {
+      const resultsElement = document.querySelector('.wow__results__container');
 
-    if (resultsElement) {
-      resultsElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
+      if (resultsElement) {
+        resultsElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }
+    }, 500);
   };
 
   const handleSearch = async () => {
@@ -29,14 +31,20 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
     setIsLoading(true);
 
     try {
-      // For now, we'll use a default realm (ravencrest) and the search query as character name
-      // In a real app, you'd want to parse realm/character from the input or have separate fields
+      const startTime = Date.now();
+      const minLoadingTime = 1000;
+
       const realm = "ravencrest";
       const characterName = searchQuery.trim().toLowerCase();
       const locale = "en_US";
 
       const response = await fetch(`/api/battlenet/character/${realm}/${characterName}/${locale}`);
       const data = await response.json();
+
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minLoadingTime) {
+        await new Promise(resolve => setTimeout(resolve, minLoadingTime - elapsedTime));
+      }
 
       if (data.success) {
         onSearch(data.character, "");
@@ -68,13 +76,21 @@ export default function SearchForm({ onSearch }: SearchFormProps) {
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyPress={handleKeyPress}
         className="wow__search__field"
+        disabled={isLoading}
       />
       <button
         onClick={handleSearch}
         className="wow__search__button"
         disabled={isLoading}
       >
-        {isLoading ? "Loading..." : "Search"}
+        {isLoading ? (
+          <span className="wow__loading">
+            <span className="wow__loading__spinner"></span>
+            Searching...
+          </span>
+        ) : (
+          "Search"
+        )}
       </button>
     </div>
   );

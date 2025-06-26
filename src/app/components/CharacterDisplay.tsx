@@ -34,15 +34,13 @@ export default function CharacterDisplay({ characterData, error }: CharacterDisp
 
   return (
     <div className="wow__results__container flex justify-center items-center min-h-[40vh] py-8">
-      <div className="w-full max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Object.entries(characterDataDisplay).map(([key, value]) => (
-            <div key={key} className="wow__results__content flex flex-col items-center justify-center">
-              <p className="wow__results-label">{key}</p>
-              <h1 className="wow__results-value">{value}</h1>
-            </div>
+      <div className="wow__results__content flex flex-col items-center justify-center">
+        {Object.entries(characterDataDisplay).map(([key, value]) => (
+          <div key={key} className="flex flex-col items-center justify-center">
+            <p className="wow__results-label">{key}</p>
+            <h1 className="wow__results-value">{value}</h1>
+          </div>
           ))}
-        </div>
       </div>
     </div>
   );
