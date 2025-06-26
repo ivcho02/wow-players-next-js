@@ -29,7 +29,7 @@ Before running this application, you'll need:
 
 2. **Node.js**: Version 18 or higher
 
-## Getting Started
+## Getting Started (Local Development)
 
 1. **Clone the repository**:
    ```bash
@@ -40,6 +40,10 @@ Before running this application, you'll need:
 2. **Install dependencies**:
    ```bash
    npm install
+   # or
+   yarn install
+   # or
+   pnpm install
    ```
 
 3. **Set up environment variables**:
@@ -47,6 +51,7 @@ Before running this application, you'll need:
    ```env
    BATTLENET_CLIENT_ID=your_client_id_here
    BATTLENET_CLIENT_SECRET=your_client_secret_here
+   BATTLENET_CHARACTER_EU_URL=https://eu.api.blizzard.com/profile/wow/character/
    ```
 
 4. **Run the development server**:
@@ -60,6 +65,20 @@ Before running this application, you'll need:
 
 5. **Open your browser**:
    Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+
+## Deploying to Production (Vercel)
+
+To deploy this app to [Vercel](https://vercel.com/):
+
+1. **Push your code to GitHub/GitLab/Bitbucket**.
+2. **Import your project into Vercel** via the Vercel dashboard.
+3. **Set environment variables in the Vercel dashboard** (do NOT rely on `.env.local` for production):
+   - `BATTLENET_CLIENT_ID`
+   - `BATTLENET_CLIENT_SECRET`
+   - `BATTLENET_CHARACTER_EU_URL`
+4. **Deploy your project**.
+
+> **Note:** If you change environment variables in Vercel, you must trigger a new deployment for changes to take effect.
 
 ## Available Scripts
 
@@ -77,7 +96,6 @@ src/
 ├── app/                    # Next.js App Router
 │   ├── api/               # API routes
 │   │   └── battlenet/     # Battle.net API integration
-│   │   └── wow-players/   # World of Warcraft players API
 │   ├── components/        # React components
 │   └── page.tsx          # Main page component
 ├── lib/                   # Utility libraries
