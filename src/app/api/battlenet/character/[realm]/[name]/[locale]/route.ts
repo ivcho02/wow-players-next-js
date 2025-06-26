@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CharacterProfile } from '@/types/battlenet';
-import { battleNetAuth } from '@/lib/battlenet-auth';
+import { CharacterProfile } from '@/types/index';
+import { BattleNetAuth } from '@/lib/battlenet-auth';
 
 const CHARACTER_URL = "https://eu.api.blizzard.com/profile/wow/character/";
 
@@ -10,6 +10,7 @@ export async function GET(
 ) {
   try {
     const { realm, name, locale } = await params;
+    const battleNetAuth = new BattleNetAuth();
     const token = await battleNetAuth.getValidToken();
     
     const characterUrl = `${CHARACTER_URL}${realm}/${name}?namespace=profile-eu&locale=${locale}`;
@@ -37,7 +38,7 @@ export async function GET(
       success: true, 
       character: characterData 
     });
-  } catch {
+  } catch (error) {
     return NextResponse.json(
       { success: false, error: 'Failed to fetch character data' },
       { status: 500 }
