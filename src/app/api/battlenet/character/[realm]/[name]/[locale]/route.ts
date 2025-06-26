@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CharacterProfile } from '@/types/index';
-import { BattleNetAuth } from '@/lib/battlenet-auth';
+import { battleNetAPI } from '@/lib/battlenet-api';
 
-const CHARACTER_URL = "https://eu.api.blizzard.com/profile/wow/character/";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   request: NextRequest,
@@ -10,35 +9,20 @@ export async function GET(
 ) {
   try {
     const { realm, name, locale } = await params;
-    const battleNetAuth = new BattleNetAuth();
-    const token = await battleNetAuth.getValidToken();
-    
-    const characterUrl = `${CHARACTER_URL}${realm}/${name}?namespace=profile-eu&locale=${locale}`;
-    
-    const response = await fetch(characterUrl, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        return NextResponse.json(
-          { success: false, error: 'Character not found' },
-          { status: 404 }
-        );
-      }
-      throw new Error(`Failed to fetch character data: ${response.statusText}`);
-    }
-
-    const characterData: CharacterProfile = await response.json();
+    const characterData = await battleNetAPI.getCharacterProfile(realm, name, locale);
     
     return NextResponse.json({ 
       success: true, 
       character: characterData 
     });
   } catch (error) {
+    if (error instanceof Error && error.message === 'Character not found') {
+      return NextResponse.json(
+        { success: false, error: 'Character not found' },
+        { status: 404 }
+      );
+    }
+    
     return NextResponse.json(
       { success: false, error: 'Failed to fetch character data' },
       { status: 500 }
