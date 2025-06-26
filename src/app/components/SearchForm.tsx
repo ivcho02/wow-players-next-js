@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CharacterProfile } from "@/types/battlenet";
+import { CharacterProfile } from "@/types/index";
 
 interface SearchFormProps {
     onSearch: (characterData: CharacterProfile | null, error: string) => void;

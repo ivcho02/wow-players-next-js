@@ -1,4 +1,4 @@
-import { BattleNetToken } from '@/types/battlenet';
+import { BattleNetToken } from '@/types/index';
 
 export class BattleNetAuth {
   private static instance: BattleNetAuth;

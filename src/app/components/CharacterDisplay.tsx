@@ -1,4 +1,4 @@
-import { CharacterProfile } from "@/types/battlenet";
+import { CharacterProfile } from "@/types/index";
 
 interface CharacterDisplayProps {
   characterData: CharacterProfile | null;

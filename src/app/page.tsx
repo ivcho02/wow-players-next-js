@@ -4,7 +4,7 @@ import { useState } from "react";
 import FireParticles from "./components/FireParticles";
 import CharacterDisplay from "./components/CharacterDisplay";
 import SearchForm from "./components/SearchForm";
-import { CharacterProfile } from "@/types/battlenet";
+import { CharacterProfile } from "@/types/index";
 
 export default function Home() {
   const [characterData, setCharacterData] = useState<CharacterProfile | null>(null);
